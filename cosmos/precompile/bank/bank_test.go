@@ -131,7 +131,7 @@ var _ = Describe("Bank Precompile Test", func() {
 			caller common.Address
 		)
 
-		denom := "abera"
+		denom := "afury"
 		denom2 := "atoken"
 
 		When("GetBalance", func() {
@@ -549,14 +549,14 @@ var _ = Describe("Bank Precompile Test", func() {
 			It("should succeed", func() {
 				expectedResult := generated.IBankModuleDenomMetadata{
 					Name:        "Berachain bera",
-					Symbol:      "BERA",
+					Symbol:      "FURY",
 					Description: "The Bera.",
 					DenomUnits: []generated.IBankModuleDenomUnit{
 						{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
 						{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-						{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+						{Denom: "afury", Exponent: uint32(18), Aliases: []string{"attobera"}},
 					},
-					Base:    "abera",
+					Base:    "afury",
 					Display: "bera",
 				}
 
@@ -731,14 +731,14 @@ func getTestMetadata() []banktypes.Metadata {
 	return []banktypes.Metadata{
 		{
 			Name:        "Berachain bera",
-			Symbol:      "BERA",
+			Symbol:      "FURY",
 			Description: "The Bera.",
 			DenomUnits: []*banktypes.DenomUnit{
 				{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
 				{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-				{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+				{Denom: "afury", Exponent: uint32(18), Aliases: []string{"attobera"}},
 			},
-			Base:    "abera",
+			Base:    "afury",
 			Display: "bera",
 		},
 		{

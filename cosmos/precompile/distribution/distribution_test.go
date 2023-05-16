@@ -118,7 +118,7 @@ var _ = Describe("Distribution Precompile Test", func() {
 
 	BeforeEach(func() {
 		valAddr = sdk.ValAddress([]byte("val"))
-		amt = sdk.NewCoin("abera", sdk.NewInt(100))
+		amt = sdk.NewCoin("afury", sdk.NewInt(100))
 
 		// Set up the contracts and keepers.
 		ctx, dk, sk, bk = setup()

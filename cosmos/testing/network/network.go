@@ -109,15 +109,15 @@ func DefaultConfig(keysMap map[string]*ethsecp256k1.PrivKey) network.Config {
 				val.GetCtx().Logger, cdb.NewMemDB(), nil, true, sims.EmptyAppOptions{},
 				baseapp.SetPruning(pruningtypes.NewPruningOptionsFromString(val.GetAppConfig().Pruning)),
 				baseapp.SetMinGasPrices(val.GetAppConfig().MinGasPrices),
-				baseapp.SetChainID("polaris-2061"),
+				baseapp.SetChainID("highbury-710"),
 			)
 		},
 		GenesisState:    BuildGenesisState(keysMap),
 		TimeoutCommit:   2 * time.Second, //nolint:gomnd // 2 seconds is the default.
-		ChainID:         "polaris-2061",
+		ChainID:         "highbury-710",
 		NumValidators:   1,
-		BondDenom:       "abera",
-		MinGasPrices:    fmt.Sprintf("0.00006%s", "abera"),
+		BondDenom:       "afury",
+		MinGasPrices:    fmt.Sprintf("0.00006%s", "afury"),
 		AccountTokens:   sdk.TokensFromConsensusPower(thousand, sdk.DefaultPowerReduction),
 		StakingTokens:   sdk.TokensFromConsensusPower(fivehundred, sdk.DefaultPowerReduction),
 		BondedTokens:    sdk.TokensFromConsensusPower(onehundred, sdk.DefaultPowerReduction),
@@ -160,7 +160,7 @@ func BuildGenesisState(keysMap map[string]*ethsecp256k1.PrivKey) map[string]json
 	bankState.DenomMetadata = getTestMetadata()
 	bankState.SendEnabled = []banktypes.SendEnabled{
 		{
-			Denom:   "abera",
+			Denom:   "afury",
 			Enabled: true,
 		},
 		{
@@ -179,7 +179,7 @@ func BuildGenesisState(keysMap map[string]*ethsecp256k1.PrivKey) map[string]json
 	// Staking module
 	var stakingState stakingtypes.GenesisState
 	encoding.Codec.MustUnmarshalJSON(genState[stakingtypes.ModuleName], &stakingState)
-	stakingState.Params.BondDenom = "abera"
+	stakingState.Params.BondDenom = "afury"
 	genState[stakingtypes.ModuleName] = encoding.Codec.MustMarshalJSON(&stakingState)
 
 	// Distribution Module
@@ -198,14 +198,14 @@ func getTestMetadata() []banktypes.Metadata {
 	return []banktypes.Metadata{
 		{
 			Name:        "Berachain bera",
-			Symbol:      "BERA",
+			Symbol:      "FURY",
 			Description: "The Bera.",
 			DenomUnits: []*banktypes.DenomUnit{
 				{Denom: "bera", Exponent: uint32(0), Aliases: []string{"bera"}},
 				{Denom: "nbera", Exponent: uint32(9), Aliases: []string{"nanobera"}},
-				{Denom: "abera", Exponent: uint32(18), Aliases: []string{"attobera"}},
+				{Denom: "afury", Exponent: uint32(18), Aliases: []string{"attobera"}},
 			},
-			Base:    "abera",
+			Base:    "afury",
 			Display: "bera",
 		},
 		{
@@ -249,7 +249,7 @@ func getCoinsForAccount(name string) sdk.Coins {
 	switch name {
 	case "alice":
 		return sdk.NewCoins(
-			sdk.NewCoin("abera", sdk.NewInt(examoney)),
+			sdk.NewCoin("afury", sdk.NewInt(examoney)),
 			sdk.NewCoin("bATOM", sdk.NewInt(examoney)),
 			sdk.NewCoin("bAKT", sdk.NewInt(12345)), //nolint:gomnd // its okay.
 			sdk.NewCoin("stake", sdk.NewInt(examoney)),
@@ -260,13 +260,13 @@ func getCoinsForAccount(name string) sdk.Coins {
 		)
 	case "bob":
 		return sdk.NewCoins(
-			sdk.NewCoin("abera", sdk.NewInt(onehundred)),
+			sdk.NewCoin("afury", sdk.NewInt(onehundred)),
 			sdk.NewCoin("atoken", sdk.NewInt(onehundred)),
 			sdk.NewCoin("stake", sdk.NewInt(examoney)),
 		)
 	case "charlie":
-		return sdk.NewCoins(sdk.NewCoin("abera", sdk.NewInt(gigamoney)))
+		return sdk.NewCoins(sdk.NewCoin("afury", sdk.NewInt(gigamoney)))
 	default:
-		return sdk.NewCoins(sdk.NewCoin("abera", sdk.NewInt(examoney)))
+		return sdk.NewCoins(sdk.NewCoin("afury", sdk.NewInt(examoney)))
 	}
 }
